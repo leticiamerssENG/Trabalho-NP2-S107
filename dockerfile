@@ -1,6 +1,6 @@
 FROM node:latest
 
-WORKDIR Trabalho-NP2-S107
+WORKDIR /app
 
 COPY package.json .
 
@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run"]
