@@ -1,13 +1,20 @@
-FROM node:latest
+FROM jenkins/jenkins:latest
 
-WORKDIR /app
+WORKDIR /var/lib/jenkins
 
-COPY package.json .
+USER root
 
-RUN npm install
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    nodejs \
+    npm \
+    build-essential
+
+COPY package.json package-lock.json
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 8080
 
-CMD ["npm", "run"]
+CMD ["jenkinsd-agent"]
