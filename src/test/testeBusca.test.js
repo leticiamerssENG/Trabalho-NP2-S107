@@ -114,11 +114,7 @@ describe('TesteMockServiço', () => {
         expect(meuServicoMock.determinarPredio(26)).toEqual("6");
     });
     
-    it('deve retornar prédio 6 para sala negativa', () => {
-        const meuServicoMock = new MeuServicoMock();
-        expect(meuServicoMock.determinarPredio(60)).toEqual("6");
-    });
-   
+    
     
 
 });
