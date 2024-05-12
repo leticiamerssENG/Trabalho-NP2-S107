@@ -5,7 +5,7 @@ pipeline {
         stage('Test') {
              triggers {
         // Aciona a pipeline quando houver um push para o repositório Git
-        scm 'pollSCM: true'
+            githubPush()
         }
             steps {
                 // Aqui é onde você executa o comando npm test
