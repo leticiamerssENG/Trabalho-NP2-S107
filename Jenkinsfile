@@ -2,16 +2,40 @@ pipeline {
     agent any
 
     stages {
-        stage('Test') {
-             triggers {
-        // Aciona a pipeline quando houver um push para o repositório Git
-            githubPush()
-        }
+        stage('Checkout') {
             steps {
-                // Aqui é onde você executa o comando npm test
-                sh 'npm install' // Instala as dependências do projeto
-                sh 'npm test' // Executa os testes
+                checkout scm
             }
         }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Instalar dependências usando npm ou yarn
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Execute Tests') {
+            steps {
+                script {
+                    // Executar testes unitários usando Mocha ou Jest
+                    sh 'npm test'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    // Empacotar o software usando ferramentas como Webpack ou Parcel
+                    sh 'npm run build'
+                }
+            }
+        }
+
     }
+
+    
 }
