@@ -6,16 +6,34 @@
   "type": "module",
   "scripts": {
     "build": "node ./src/main/index.js",
-    "test": "jest test"
+    "test": "jest",
+    "test:ci": "jest --ci --reporters=default --reporters=jest-junit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "i": "^0.3.7"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "coverageReporters": ["text", "lcov"],
+    "testEnvironment": "node",
+    "reporters": [
+      "default",
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "coverage",
+          "outputName": "junit.xml"
+        }
+      ]
+    ]
   }
 }

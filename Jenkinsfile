@@ -34,7 +34,12 @@ pipeline {
                 }
             }
         }
-
+        stage('Archive Artifacts') {
+            steps {
+                // Arquivar os artefatos gerados no build
+                archiveArtifacts artifacts: 'build/**', fingerprint: true
+            }
+        }
         // stage('Notify Users') {
         //     steps {
         //         withEnv {
@@ -63,7 +68,8 @@ pipeline {
     }
 post {
         always {
-            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+            // Arquivar logs ou relatórios de teste, se houver
+            junit 'test-results/**/*.xml' // ajuste o caminho conforme necessário
         }
     }
 }
