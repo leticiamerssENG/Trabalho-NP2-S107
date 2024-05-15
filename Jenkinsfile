@@ -32,12 +32,6 @@ pipeline {
                     // Empacotar o software usando ferramentas como Webpack ou Parcel
                     sh 'npm run build'
                 }
-                post {
-                success {
-                    // Arquivar artefatos de build
-                    archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
-                }
-            }
             }
         }
         stage('Archive Artifacts') {
