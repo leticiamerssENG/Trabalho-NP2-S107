@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+            EMAIL_ADDRESS = 'davidossantosbalbinomarcelino@gmail.com'
+        }
     stages {
         stage('Checkout') {
             steps {
@@ -38,9 +40,14 @@ pipeline {
 
     post {
         always {
-            // Arquivar os artefatos gerados no build
              archiveArtifacts artifacts: '**', fingerprint: true
-            // Arquivar outros artefatos, se necessário
+             
+             emailext (
+                subject: "Resultado do Pipeline CI/CD",
+                body: "Pipeline: ${currentBuild.fullDisplayName}\nStatus: ${currentBuild.result}\nPara mais informações, acesse o Jenkins: ${env.BUILD_URL}",
+                to: "${env.EMAIL_ADDRESS}",
+                mimeType: 'text/plain'
+            )
         }
     }
 }
