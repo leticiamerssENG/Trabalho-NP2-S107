@@ -39,7 +39,7 @@ pipeline {
     post {
         always {
             // Arquivar os artefatos gerados no build
-            archiveArtifacts artifacts: 'coverage/junit.xml', fingerprint: true
+             archiveArtifacts artifacts: '**', fingerprint: true
             // Arquivar outros artefatos, se necessário
         }
     }
