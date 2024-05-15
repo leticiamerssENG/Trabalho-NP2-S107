@@ -31,7 +31,6 @@ pipeline {
                 script {
                     // Empacotar o software usando ferramentas como Webpack ou Parcel
                     sh 'npm run build'
-                    archiveArtifacts 'Trabalho-NP2-S107/target/'
                 }
             }
         }
