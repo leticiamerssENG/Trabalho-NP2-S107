@@ -66,10 +66,13 @@ pipeline {
         //     }
         // }
     }
-post {
+ post {
         always {
-            // Arquivar logs ou relatórios de teste, se houver
-            junit 'test-results/**/*.xml' // ajuste o caminho conforme necessário
+            // Arquivar os artefatos gerados no build
+            archiveArtifacts artifacts: '**', fingerprint: true
+            // Arquivar relatórios de cobertura de teste
+            junit 'coverage/junit.xml' // Ajuste o caminho se necessário
+            archiveArtifacts 'coverage/**'
         }
     }
 }
