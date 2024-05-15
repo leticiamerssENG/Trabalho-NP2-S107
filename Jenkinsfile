@@ -35,7 +35,36 @@ pipeline {
             }
         }
 
-    }
+    //     stage('Notify Users') {
+    //         steps {
+    //             withEnv {
+    //                 EMAIL_ADDRESS = 'leticia.merss1999@gmail.com'
+    //             }
+    //             script {
+    //                 // Enviar e-mail com informações da execução do pipeline
+    //                 def emailAddress = System.getenv('EMAIL_ADDRESS')
+    //                 def pipelineStatus = pipeline.currentBuild.result
 
-    
+    //                 def emailContent = """
+    //                     Pipeline: ${pipeline.currentBuild.fullDisplayName}
+    //                     Status: ${pipelineStatus}
+
+    //                     Para mais informações, acesse o Jenkins: http://localhost:8080/job/${pipeline.currentBuild.fullName}
+    //                 """
+
+    //                 sendmail(
+    //                     to: emailAddress,
+    //                     subject: "Resultado do Pipeline CI/CD",
+    //                     body: emailContent
+    //                 )
+    //             }
+    //         }
+    //     }
+    // }
+
+    // post {
+    //     always {
+    //         archiveArtifacts artifacts: 'build/*'
+    //     }
+    // }
 }
