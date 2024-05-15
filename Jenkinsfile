@@ -34,12 +34,12 @@ pipeline {
                 }
             }
         }
-        stage('Archive Artifacts') {
-            steps {
-                // Arquivar os artefatos gerados no build
-                archiveArtifacts artifacts: 'build/**', fingerprint: true
-            }
-        }
+        // stage('Archive Artifacts') {
+        //     steps {
+        //         // Arquivar os artefatos gerados no build
+        //         archiveArtifacts artifacts: 'build/**', fingerprint: true
+        //     }
+        // }
         // stage('Notify Users') {
         //     steps {
         //         withEnv {
