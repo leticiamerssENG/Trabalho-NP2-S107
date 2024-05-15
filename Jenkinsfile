@@ -22,7 +22,6 @@ pipeline {
                 script {
                     // Executar testes unitários usando Mocha ou Jest
                     sh 'npm test'
-                    archiveArtifacts 'Trabalho-NP2-S107/target/'
                 }
             }
         }
