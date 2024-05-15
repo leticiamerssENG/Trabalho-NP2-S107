@@ -66,10 +66,4 @@ pipeline {
         //     }
         // }
     }
-post {
-        always {
-            // Arquivar logs ou relatórios de teste, se houver
-            junit 'test-results/**/*.xml' // ajuste o caminho conforme necessário
-        }
-    }
 }
