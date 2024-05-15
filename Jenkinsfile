@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    enviroment {
-        EMAIL_ADDRESS = 'leticia.merss1999@gmail.com'
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -41,6 +37,9 @@ pipeline {
 
         stage('Notify Users') {
             steps {
+                withEnv {
+                    EMAIL_ADDRESS = 'leticia.merss1999@gmail.com'
+                }
                 script {
                     // Enviar e-mail com informações da execução do pipeline
                     def emailAddress = System.getenv('EMAIL_ADDRESS')
