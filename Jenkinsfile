@@ -20,7 +20,7 @@ pipeline {
         stage('Execute Tests') {
             steps {
                 script {
-                    // Executar testes unitários usando Mocha ou Jest
+                    // Executar testes unitários usando Jest
                     sh 'npm test'
                 }
             }
@@ -29,44 +29,18 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Empacotar o software usando ferramentas como Webpack ou Parcel
+                    // Empacotar o software usando Webpack ou outra ferramenta
                     sh 'npm run build'
                 }
             }
         }
-        // stage('Notify Users') {
-        //     steps {
-        //         withEnv {
-        //             EMAIL_ADDRESS = 'leticia.merss1999@gmail.com'
-        //         }
-        //         script {
-                    // Enviar e-mail com informações da execução do pipeline
-        //             def emailAddress = System.getenv('EMAIL_ADDRESS')
-        //             def pipelineStatus = pipeline.currentBuild.result
-
-        //             def emailContent = """
-        //                 Pipeline: ${pipeline.currentBuild.fullDisplayName}
-        //                 Status: ${pipelineStatus}
-
-        //                 Para mais informações, acesse o Jenkins: http://localhost:8080/job/${pipeline.currentBuild.fullName}
-        //             """
-
-        //             sendmail(
-        //                 to: emailAddress,
-        //                 subject: "Resultado do Pipeline CI/CD",
-        //                 body: emailContent
-        //             )
-        //         }
-        //     }
-        // }
     }
- post {
+
+    post {
         always {
             // Arquivar os artefatos gerados no build
-            archiveArtifacts artifacts: '**', fingerprint: true
-            // Arquivar relatórios de cobertura de teste
-            junit 'coverage/junit.xml' // Ajuste o caminho se necessário
-            archiveArtifacts 'coverage/**'
+            archiveArtifacts artifacts: 'coverage/junit.xml', fingerprint: true
+            // Arquivar outros artefatos, se necessário
         }
     }
 }
