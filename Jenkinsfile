@@ -22,6 +22,7 @@ pipeline {
                 script {
                     // Executar testes unitários usando Mocha ou Jest
                     sh 'npm test'
+                    archiveArtifacts 'Trabalho-NP2-S107/target/'
                 }
             }
         }
@@ -31,6 +32,7 @@ pipeline {
                 script {
                     // Empacotar o software usando ferramentas como Webpack ou Parcel
                     sh 'npm run build'
+                    archiveArtifacts 'Trabalho-NP2-S107/target/'
                 }
             }
         }
@@ -61,5 +63,9 @@ pipeline {
         //     }
         // }
     }
-
+post {
+        always {
+            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+        }
+    }
 }
