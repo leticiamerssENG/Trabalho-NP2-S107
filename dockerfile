@@ -16,7 +16,7 @@ COPY package.json package-lock.json
 
 COPY . .
 
-ENV EMAIL_DESTINATARIO=leticia.merss1999@gmail.com
+ENV EMAIL_DESTINATARIO=leticia.vitoria@ges.inatel.br
 
 EXPOSE 8080
 
