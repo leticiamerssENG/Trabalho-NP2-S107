@@ -34,5 +34,17 @@ pipeline {
                 }
             }
         }
+
+        stage('Notif') {
+
+            steps {
+                echo 'Notificando'
+                sh '''
+                    cd script
+                    chmod 775 *
+                    ./enviar_email.sh
+                    '''
+            }
+        }
     }
 }
