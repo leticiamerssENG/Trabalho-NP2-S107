@@ -23,12 +23,11 @@ pipeline {
                     // Executar testes unitários usando Mocha ou Jest
                     sh 'npm test'
                 }
-                post {
-                    always {
-                    // Arquivar os relatórios de teste
-                    junit 'reports/jest/**/*.xml'
-                }
             }
+            post {
+                always {
+                // Arquivar os relatórios de teste
+                junit 'reports/jest/**/*.xml'
             }
         }
 
