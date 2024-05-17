@@ -23,6 +23,12 @@ pipeline {
                     // Executar testes unitários usando Mocha ou Jest
                     sh 'npm test'
                 }
+                post {
+                    always {
+                    // Arquivar os relatórios de teste
+                    junit 'reports/jest/**/*.xml'
+                }
+            }
             }
         }
 
@@ -35,7 +41,7 @@ pipeline {
             }
             post {
                 success {
-                    // Arquivar o artefato gerado (por exemplo, a pasta dist)
+                    // Arquivar o artefato gerado (ajustar o caminho)
                     archiveArtifacts artifacts: 'dist/**/*', allowEmptyArchive: true
                 }
             }
