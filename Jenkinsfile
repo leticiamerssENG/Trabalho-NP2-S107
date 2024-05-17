@@ -25,7 +25,7 @@ pipeline {
                 }
             }
             post {
-                always {
+                success {
                 // Arquivar os relatórios de teste
                 junit 'reports/jest/**/*.xml'
             }
