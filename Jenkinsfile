@@ -24,12 +24,12 @@ pipeline {
                     sh 'npm test'
                 }
             }
-            post {
-                success {
-                // Arquivar os relatórios de teste
-                junit 'reports/jest/**/*.xml'
-                }   
-            }
+            // post {
+            //     success {
+            //     // Arquivar os relatórios de teste
+            //     junit 'reports/jest/**/*.xml'
+            //     }   
+            // }
         }
         stage('Build') {
             steps {
@@ -38,12 +38,12 @@ pipeline {
                     sh 'npm run build'
                 }
             }
-            post {
-                success {
-                    // Arquivar o artefato gerado (ajustar o caminho)
-                    archiveArtifacts artifacts: 'dist/**/*', allowEmptyArchive: true
-                }
-            }
+            // post {
+            //     success {
+            //         // Arquivar o artefato gerado (ajustar o caminho)
+            //         archiveArtifacts artifacts: 'dist/**/*', allowEmptyArchive: true
+            //     }
+            // }
         }
 
         stage('Notif') {
@@ -56,6 +56,15 @@ pipeline {
                     ./enviar_email.sh
                     '''
             }
+        }
+    }
+    post {
+        always {
+            // Arquivar os artefatos gerados no build
+            archiveArtifacts artifacts: '**', fingerprint: true
+            // Arquivar relatórios de cobertura de teste
+            junit 'coverage/junit.xml' // Ajuste o caminho se necessário
+            archiveArtifacts 'coverage/**'
         }
     }
 }
