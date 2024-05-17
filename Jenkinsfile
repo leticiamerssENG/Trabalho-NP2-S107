@@ -28,9 +28,9 @@ pipeline {
                 success {
                 // Arquivar os relatórios de teste
                 junit 'reports/jest/**/*.xml'
+                }   
             }
         }
-
         stage('Build') {
             steps {
                 script {
