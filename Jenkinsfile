@@ -33,6 +33,12 @@ pipeline {
                     sh 'npm run build'
                 }
             }
+            post {
+                success {
+                    // Arquivar o artefato gerado (por exemplo, a pasta dist)
+                    archiveArtifacts artifacts: 'dist/**/*', allowEmptyArchive: true
+                }
+            }
         }
 
         stage('Notif') {
@@ -45,11 +51,6 @@ pipeline {
                     ./enviar_email.sh
                     '''
             }
-        }
-    }
-    post {
-        always {
-             archiveArtifacts artifacts: '**', fingerprint: true
         }
     }
 }
