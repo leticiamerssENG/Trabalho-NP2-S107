@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
     git \
     nodejs \
     npm \
-    build-essential
+    build-essential \
+    mailutils
 
 COPY package.json package-lock.json
 
