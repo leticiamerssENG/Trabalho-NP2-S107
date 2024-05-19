@@ -60,11 +60,7 @@ pipeline {
     }
     post {
         always {
-            // Arquivar os artefatos gerados no build
-            archiveArtifacts artifacts: '**', fingerprint: true
-            // Arquivar relatórios de cobertura de teste
-            junit 'coverage/junit.xml' // Ajuste o caminho se necessário
-            archiveArtifacts 'coverage/**'
+             archiveArtifacts artifacts: '**', fingerprint: true
         }
     }
 }
